@@ -1,0 +1,50 @@
+.header {
+  background-color: #ffff;
+  text-align: center;
+  padding: 10px;
+}
+h1 {color:darkblue; font-size:40px;font-weight:bold; text-align:center;font-family: "JetBrains Mono", monospace;}
+h2 {color:midnightblue; font-size:20px;font-weight:bold; text-align:center; font-family: "JetBrains Mono", monospace;}
+h3 {color:darkblue; font-size:20px;font-weight:bold; text-align:center; font-family: "JetBrains Mono", monospace;}
+p {font-family: "JetBrains Mono", monospace;}
+h4 {text-align:center; font-family: "JetBrains Mono", monospace;}
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+a:link, a:visited {
+  background-color: #0051ff;
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;b
+  font-family: "JetBrains Mono", monospace;
+}
+
+a:hover, a:active {
+  background-color: #0051ff;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url('../JetBrainsMono-2.304/fonts/webfonts/JetBrainsMono-Bold.woff2') format('woff2');
+  src: url('../JetBrainsMono-2.304/fonts/webfonts/JetBrainsMono-Regular.woff2') format('woff');
+}
