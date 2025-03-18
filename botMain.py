@@ -46,7 +46,7 @@ async def ping(ctx):
 async def bintro(ctx):
     await ctx.send('Welcome to Discord Plays Games!')
     await ctx.send('This bot has been created by Orbernator Studios')
-    await ctx.send('To use this bot please message Orbernator')
+    await ctx.send('To use this bot please message the bot hoster')
 
 @bot.command()
 @commands.is_owner
