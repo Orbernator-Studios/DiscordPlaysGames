@@ -2,10 +2,12 @@
 import discord
 import os
 from discord.ext import commands
-import pyautogui
 import time
 
+import mGBA
+
 DPGRun = (0)
+emulator = ("0")
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -15,23 +17,32 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 def KeyPress(button):
     if DPGRun == 1:
         if button == "up":
-            pyautogui.press('up')
+            if emulator == "mGBA":
+                mGBA.UP()
         elif button == "down":
-            pyautogui.press('down')
+            if emulator == 'mGBA':
+                mGBA.DOWN()
         elif button == "left":
-            pyautogui.press('left')
+            if emulator == "mGBA":
+                mGBA.LEFT()
         elif button == "right":
-            pyautogui.press('right')
+            if emulator == "mGBA":
+                mGBA.RIGHT()
         elif button == "a":
-            pyautogui.press('x')
+            if emulator == "mGBA":
+                mGBA.A()
         elif button == "b":
-            pyautogui.press('z')
+            if emulator == "mGBA":
+                mGBA.B()
         elif button == "start":
-            pyautogui.press('0')
+            if emulator == "mGBA":
+                mGBA.START()
         elif button == "select":
-            pyautogui.press('1')
+            if emulator == "mGBA":
+                mGBA.SELECT()
         else:
             exit("KEYPRESSFAILURE")
+
 
 
 @bot.event
@@ -41,6 +52,22 @@ async def on_ready():
 @bot.command()
 async def ping(ctx):
     await ctx.send('Pong!')
+
+@bot.command()
+@commands.is_owner
+async def setemu(ctx, arg):
+    if DPGRun == 1:
+        await ctx.send("Please disable the bot first.")
+    elif DPGRun == 0:
+        await ctx.send('Searching for emulator '+ arg +'...')
+        if arg == ("mGBA"):
+            emulator = ("mGBA")
+            import mGBA
+            await ctx.send('mGBA configs enabled')
+        else:
+            await ctx.send('Emulator not found. Please try again.')
+    else:
+        await ctx.send('CRITICAL FAILURE. RESTART BOT. (DPGRun val error)')
 
 @bot.command()
 async def bintro(ctx):
