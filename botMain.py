@@ -6,7 +6,7 @@ import time
 
 import mGBA
 
-DPGRun = (0)
+dpg_run = 0
 emulator = ("0")
 
 intents = discord.Intents.default()
@@ -14,8 +14,16 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix='!', intents=intents)
 
+def bot_on():
+    global dpg_run
+    dpg_run = 1
+
+def bot_off():
+    global dpg_run
+    dpg_run = 0
 def KeyPress(button):
-    if DPGRun == 1:
+    if dpg_run == 1:
+        time.sleep(0.2)
         if button == "up":
             if emulator == "mGBA":
                 mGBA.UP()
@@ -54,11 +62,12 @@ async def ping(ctx):
     await ctx.send('Pong!')
 
 @bot.command()
-@commands.is_owner
+@commands.is_owner()
 async def setemu(ctx, arg):
-    if DPGRun == 1:
+    global emulator
+    if dpg_run == 1:
         await ctx.send("Please disable the bot first.")
-    elif DPGRun == 0:
+    elif dpg_run == 0:
         await ctx.send('Searching for emulator '+ arg +'...')
         if arg == ("mGBA"):
             emulator = ("mGBA")
@@ -75,23 +84,27 @@ async def bintro(ctx):
     await ctx.send('This bot has been created by Orbernator Studios')
     await ctx.send('To use this bot please message the bot hoster')
 
+
+
+
+
 @bot.command()
-@commands.is_owner
 async def botstart(ctx):
-    if DPGRun == 0:
+    if dpg_run == 0:
         await ctx.send('DPG NOW ENABLED')
-        DPGRun = 1
-    elif DPGRun == 1:
+        bot_on()
+    elif dpg_run == 1:
         await ctx.send('Bot already started')
     else:
         await ctx.send('CRITICAL ERROR. RESTART BOT. (DPG run val)')
 
 @bot.command()
 async def stop(ctx):
-    if DPGRun == 0:
+    if dpg_run == 0:
         await ctx.send('Bot already disabled')
-    elif DPGRun == 1:
+    elif dpg_run == 1:
         await ctx.send('DPG DISABLED')
+        bot_off()
     else:
         await ctx.send('CRITICAL ERROR. RESTART BOT. (DPG run val)')
 
@@ -151,4 +164,4 @@ async def select(ctx):
 
 
 
-bot.run(os.getenv('TOKEN'))
+bot.run('PUT_TOKEN_HERE')
