@@ -1,0 +1,2 @@
+PyAutoGUI~=0.9.54
+Discord.Py~=2.5.2
